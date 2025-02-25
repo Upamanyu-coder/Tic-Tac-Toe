@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #282c34;
+    color: white;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+h1 { margin-bottom: 10px; }
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 5px;
+}
+.cell {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    background: white;
+    color: #282c34;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background 0.3s ease-in-out;
+}
+.cell:hover { background: #ddd; }
+.win { background: #4CAF50 !important; color: white !important; }
+.message {
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+.reset-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background: #ff5722;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.reset-btn:hover { background: #e64a19; }
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: gold;
+    opacity: 0.7;
+    animation: fall 2s linear infinite;
+}
+@keyframes fall {
+    from { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+    to { transform: translateY(500px) rotate(360deg); opacity: 0; }
+}
