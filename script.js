@@ -4,6 +4,12 @@ let currentPlayer = "X";
 let gameBoard = ["", "", "", "", "", "", "", "", ""];
 let gameActive = true;
 
+// Track moves for each player
+const playerMoves = {
+    X: [],
+    O: []
+};
+
 function createBoard() {
     board.innerHTML = "";
     gameBoard.forEach((cell, index) => {
@@ -17,10 +23,19 @@ function createBoard() {
 }
 
 function handleClick(event) {
-    const index = event.target.dataset.index;
+    const index = Number(event.target.dataset.index);
     if (gameBoard[index] !== "" || !gameActive) return;
-    
+
+    // Handle rolling removal if player already has 3 moves
+    if (playerMoves[currentPlayer].length === 3) {
+        const oldestMoveIndex = playerMoves[currentPlayer].shift(); // Remove oldest
+        gameBoard[oldestMoveIndex] = ""; // Clear that cell
+    }
+
+    // Add new move
     gameBoard[index] = currentPlayer;
+    playerMoves[currentPlayer].push(index);
+
     createBoard();
     checkWinner();
     currentPlayer = currentPlayer === "X" ? "O" : "X";
@@ -43,6 +58,7 @@ function checkWinner() {
             return;
         }
     }
+
     if (!gameBoard.includes("")) {
         message.innerText = "It's a Draw!";
         gameActive = false;
@@ -72,6 +88,8 @@ function resetGame() {
     gameActive = true;
     currentPlayer = "X";
     message.innerText = "";
+    playerMoves.X = [];
+    playerMoves.O = [];
     createBoard();
 }
 
