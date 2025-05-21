@@ -1,5 +1,4 @@
 # Tic-Tac-Toe
-Here's a professional `README.md` file for your **Tic-Tac-Toe** project, including a description, features, usage, and setup instructions:
 
 ---
 
